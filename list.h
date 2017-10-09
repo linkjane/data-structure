@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 #define LIST_INIT_SIZE 2
 #define LISTINCREMENT 1
 #define ELASTICITY_SPACE 1
@@ -129,12 +126,12 @@ void priorElem(SqList *list, eleType curElem, eleType *preElem) {
 void nextElem(SqList *list, eleType curElem, eleType *nextElem) {
     for (int i = 0; i < list->length; ++i) {
         if (list->elem[i] == curElem) {
-           if (i == (list->length - 1)) {
+            if (i == (list->length - 1)) {
                 printf("没有后继\n");
-               break;
-           }
+                break;
+            }
 
-           *nextElem = list->elem[i + 1];
+            *nextElem = list->elem[i + 1];
             break;
         }
     }
@@ -163,53 +160,4 @@ void listShow(SqList *list) {
         int ele = list->elem[i];
         printf("%d\n", ele);
     }
-}
-
-
-int main(int argc) {
-    //定义列表
-    SqList li;
-    //初始化列表
-    lnitList(&li);
-    // 插入列表数值
-    listInsert(&li, 0, 0);
-    listInsert(&li, 1, 1);
-    listInsert(&li, 1, 20);
-    listInsert(&li, 1, 46);
-
-    /*测试前驱后继
-    int testPriorNext = 0;
-    priorElem(&li, 20, &testPriorNext);
-    printf("20的前驱是: %d\n", testPriorNext);
-
-    nextElem(&li, 20, &testPriorNext);
-    printf("20的后继是: %d\n", testPriorNext);
-
-    priorElem(&li, 0, &testPriorNext);
-    printf("0的前驱是: %d\n", testPriorNext);
-
-    nextElem(&li, 1, &testPriorNext);
-    printf("1的前驱是: %d\n", testPriorNext);
-
-     */
-
-    listShow(&li);
-
-    printf("list反转\n");
-
-    listTraverse(&li);
-
-    printf("列表是否为空%d\n", listIsEmpty(&li));
-
-    //展示列表
-    listShow(&li);
-
-    printf("列表是否为空%d\n", listIsEmpty(&li));
-
-
-    printf("总空间是: %d\n", getListSize(&li));
-    printf("总长度是: %d\n", listLength(&li));
-
-    //释放分配的内存
-    free(li.elem);
 }
