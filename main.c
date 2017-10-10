@@ -29,7 +29,7 @@ int main() {
 
     printf("遍历完毕\n");
     printf("最大空间是: %d\n", stack->maxSize);
-    printf("当前值是: %d\n", stackGetLength(*stack));
+    printf("当前长度是: %d\n", stackGetLength(*stack));
 }
 
 
