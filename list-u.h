@@ -74,7 +74,6 @@ int sqlistDeleteByIndex(Sqlist *sqlist, int index) {
         return ERROR;
     }
     for (int i = index; i < sqlist->length - 1; ++i) {
-        printf("值是%d\n", sqlist->list[i + 1]);
         sqlist->list[i] = sqlist->list[i + 1];
     }
     sqlist->length--;
