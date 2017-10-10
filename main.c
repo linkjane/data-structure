@@ -6,11 +6,19 @@
 
 int main() {
     Stack *stack;
-    stack->base = malloc(sizeof(int));
+    stack = malloc(sizeof(Stack));
     stackInit(stack);
-    stack->base[0] = 10;
-    stack->top++;
+
+    stackPush(stack, 20);
+    stackPush(stack, 25);
+    stackPush(stack, 37);
+
+
     stackTraverse(stack);
+
+    printf("遍历完毕\n");
+    printf("最大空间是: %d\n", stack->maxSize);
+    printf("当前值是: %d\n", stackGetLength(*stack));
 }
 
 

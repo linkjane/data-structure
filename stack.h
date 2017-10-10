@@ -7,6 +7,7 @@ typedef int stackET;
 typedef struct{
     int *base;
     int *top;
+    int maxSize;
 } Stack;
 
 int stackInit(Stack *stack) {
@@ -17,6 +18,21 @@ int stackInit(Stack *stack) {
         return ERROR;
     }
     stack->top = stack->base;
+    stack->maxSize = 1;
+}
+
+int stackPush(Stack *stack, stackET val) {
+    int length = stack->top - stack->base;
+    if (length >= stack->maxSize) {
+        stack->maxSize *= 2;
+        stack->base = realloc(stack->base, sizeof(stackET) * stack->maxSize);
+    }
+    *(stack->top++) =  val;
+    stack->maxSize++;
+}
+
+int stackGetLength(Stack stack) {
+    return stack.top - stack.base;
 }
 
 int stackTraverse(Stack *stack) {
