@@ -16,6 +16,17 @@ int main() {
 
     stackTraverse(stack);
 
+    int val = stackPop(stack);
+    printf("弹出顶元素是: %d\n", val);
+
+    val = stackPop(stack);
+    printf("弹出顶元素是: %d\n", val);
+
+    val = stackPop(stack);
+    printf("弹出顶元素是: %d\n", val);
+
+    stackTraverse(stack);
+
     printf("遍历完毕\n");
     printf("最大空间是: %d\n", stack->maxSize);
     printf("当前值是: %d\n", stackGetLength(*stack));

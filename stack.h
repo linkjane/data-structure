@@ -31,6 +31,15 @@ int stackPush(Stack *stack, stackET val) {
     stack->maxSize++;
 }
 
+stackET stackPop(Stack *stack) {
+    if (stack->top == stack->base) {
+        printf("栈空\n");
+        return 0;
+    }
+    return *(--stack->top);
+}
+
+
 int stackGetLength(Stack stack) {
     return stack.top - stack.base;
 }
