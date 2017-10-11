@@ -10,15 +10,16 @@ typedef struct{
     int maxSize;
 } Stack;
 
-int stackInit(Stack *stack) {
+int stackInit(Stack **stack) {
     //初始化只有1个可以存储的空间
-    stack->base = malloc(sizeof(int));
-    if (!stack->base) {
+    *stack = malloc(sizeof(Stack));
+    (*stack)->base = malloc(sizeof(int));
+    if (!(*stack)->base) {
         printf("分配失败");
         return ERROR;
     }
-    stack->top = stack->base;
-    stack->maxSize = 1;
+    (*stack)->top = (*stack)->base;
+    (*stack)->maxSize = 1;
 }
 
 int stackPush(Stack *stack, stackET val) {

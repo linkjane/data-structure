@@ -6,8 +6,7 @@
 
 int main() {
     Stack *stack;
-    stack = malloc(sizeof(Stack));
-    stackInit(stack);
+    stackInit(&stack);
 
     stackPush(stack, 20);
     stackPush(stack, 25);
