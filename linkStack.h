@@ -17,15 +17,15 @@ typedef struct {
 
 //}
 
-void linkStackInit(LinkStack *linkStack) {
-    linkStack = malloc(sizeof(LinkStack));
-    linkStack->base = malloc(sizeof(node));
-    if (!linkStack || !linkStack->base) {
+void linkStackInit(LinkStack **linkStack) {
+    *linkStack = malloc(sizeof(LinkStack));
+    if (!*linkStack || !(*linkStack)->base) {
         printf("内存分配失败\n");
         exit(0);
     }
-    linkStack->length = 0;
-    linkStack->top = linkStack->base;
+    (*linkStack)->length = 0;
+    (*linkStack)->base = NULL;
+    (*linkStack)->top = (*linkStack)->base;
 
 }
 
@@ -62,5 +62,6 @@ void linkStackTraverse(LinkStack *linkStack) {
     node *cursor = linkStack->base;
     do {
         printf("%d\n", cursor->val);
+        cursor = cursor->next;
     } while(cursor != linkStack->top);
 }
