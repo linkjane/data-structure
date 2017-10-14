@@ -1,25 +1,26 @@
 #define INITSIZE 1
 
 typedef int linkStackET;
+typedef int status;
 
-typedef struct node{
+typedef struct Node{
     linkStackET val;
-    struct  node *next;
-} node;
+    struct  Node *next;
+} Node;
 
 typedef struct {
-    node *base;
-    node *top;
+    Node *base;
+    Node *top;
     int length;
 } LinkStack;
 
-//node *createNode(linkStackET val, node *next) {
+//Node *createNode(linkStackET val, Node *next) {
 
 //}
 
 void linkStackInit(LinkStack **linkStack) {
     *linkStack = malloc(sizeof(LinkStack));
-    if (!*linkStack || !(*linkStack)->base) {
+    if (!*linkStack) {
         printf("内存分配失败\n");
         exit(0);
     }
@@ -29,39 +30,69 @@ void linkStackInit(LinkStack **linkStack) {
 
 }
 
+int linkStackIsEmpty(LinkStack linkStack) {
+    if (linkStack.top == linkStack.base && !linkStack.base) {
+        return 1;
+    }
+    return 0;
+}
+
+status linkStackPop(LinkStack *linkStack, linkStackET *e) {
+
+    if (linkStackIsEmpty(*linkStack)) {
+        printf("空栈\n");
+        return ERROR;
+    }
+
+    Node *oldNode = linkStack->top;
+    *e = oldNode->val;
+    linkStack->top = oldNode->next;
+    //如果top没有值, base也清空
+    if (linkStack->top == NULL) {
+        linkStack->base = NULL;
+    }
+    linkStack->length--;
+
+    return SUCCESS;
+}
 
 int linkStackPush(LinkStack *linkStack, linkStackET val) {
     //不存在内存不够用的情况
 
-    node *temp = linkStack->top;
+    Node *temp = linkStack->top;
 
-    node* nNode= malloc(sizeof(node));
+    Node* nNode= malloc(sizeof(Node));
     nNode->val = val;
     nNode->next = NULL;
 
-    //如果是第一个就直接绑定新节点
-    if (linkStack->base == linkStack->top) {
-        temp = nNode;
+    //如果是第一个就直接绑定新节点,并赋值给base
+    if (linkStack->base == linkStack->top && !linkStack->base) {
+        linkStack->base = nNode;
     } else {
-        temp->next = nNode;
+        nNode->next = temp;
     }
 
-    linkStack->top = temp->next;
+    linkStack->top = nNode;
     linkStack->length++;
+
+    //释放temp
+    temp = NULL;
 }
+
+
 
 int linkStackLength(LinkStack linkStack) {
     return linkStack.length;
 }
 
 void linkStackTraverse(LinkStack *linkStack) {
-    if (linkStack->top == linkStack->base) {
+    if (linkStack->top == linkStack->base && !linkStack->base) {
         printf("空栈\n");
         return;
     }
-    node *cursor = linkStack->base;
+    Node *cursor = linkStack->top;
     do {
         printf("%d\n", cursor->val);
         cursor = cursor->next;
-    } while(cursor != linkStack->top);
+    } while(cursor != NULL);
 }

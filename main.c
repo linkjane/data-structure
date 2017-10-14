@@ -7,8 +7,20 @@
 
 int main() {
     LinkStack *linkStack;
-    linkStackInit(linkStack);
+    linkStackInit(&linkStack);
     linkStackPush(linkStack, 10);
+    linkStackPush(linkStack, 20);
+    linkStackPush(linkStack, 40);
+
+    linkStackET res;
+    linkStackPop(linkStack, &res);
+    printf("pop出的值是: %d\n", res);
+
+    linkStackPop(linkStack, &res);
+    printf("pop出的值是: %d\n", res);
+
+    linkStackPop(linkStack, &res);
+    printf("pop出的值是: %d\n", res);
 
     linkStackTraverse(linkStack);
 
