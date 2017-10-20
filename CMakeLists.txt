@@ -12,6 +12,6 @@ link_directories(${GTK3_LIBRARY_DIRS})
 # Add other flags to the compiler
 add_definitions(${GTK3_CFLAGS_OTHER})
 # Add an executable compiled from hello.c
-add_executable(hello main.c common.h sequence-queue.h)
+add_executable(hello main.c common.h link-queue.h)
 # Link the target to the GTK+ libraries
 target_link_libraries(hello ${GTK3_LIBRARIES})

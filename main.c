@@ -2,31 +2,31 @@
 #include <stdlib.h>
 
 #include "common.h"
-#include "sequence-queue.h"
-
+#include "link-queue.h"
 
 int main() {
-    Queue *queue;
 
-    queueInit(&queue);
-    queuePush(queue, 233);
-    queuePush(queue, 10);
-    queuePush(queue, 140);
-    queueET res;
-    queuePop(queue,&res);
-    queuePop(queue,&res);
-    printf("队列的弹出的header的值是%d\n", res);
-    queueFront(*queue, &res);
-    printf("队列的返回的header的值是%d\n", res);
-    queueBack(*queue, &res);
-    printf("队列的返回的rear的值是%d\n", res);
+    LinkQueue *linkQueue;
+    linkQueueInit(&linkQueue);
+    linkQueuePush(linkQueue, 10);
+    linkQueuePush(linkQueue, 20);
+    linkQueuePush(linkQueue, 25);
+    linkQueuePush(linkQueue, 30);
+    linkQueueET res;
+    linkQueuePop(linkQueue, &res);
+    printf("弹出的header值是:%d\n", res);
+    linkQueuePop(linkQueue, &res);
+    printf("弹出的header值是:%d\n", res);
+    linkQueuePop(linkQueue, &res);
+    printf("弹出的header值是:%d\n", res);
+    linkQueuePop(linkQueue, &res);
+    printf("弹出的header值是:%d\n", res);
+    linkQueuePop(linkQueue, &res);
+    printf("弹出的header值是:%d\n", res);
 
-    printf("开始遍历队列\n");
-    queueTraverse(*queue);
-    printf("队列的长度是%d\n", queueLength(*queue));
-    printf("队列的最大长度是%d\n", queue->maxSize);
-
+    printf("开始遍历\n");
+    linkQueueTraverse(*linkQueue);
+    printf("队列长度是:%d\n", linkQueue->length);
 }
-
 
 
